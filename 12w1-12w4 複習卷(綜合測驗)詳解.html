@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高三上 第三次段考 英文雜誌綜合測驗複習卷詳解</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f3f4f6; /* Gray-100 */
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9ca3af; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; 
+        }
+        .correct-opt {
+            background-color: #ecfdf5; /* Emerald-50 */
+            border-color: #10b981; /* Emerald-500 */
+            color: #064e3b; /* Emerald-900 */
+        }
+        .wrong-opt {
+            background-color: #fef2f2; /* Red-50 */
+            border-color: #ef4444; /* Red-500 */
+            color: #7f1d1d; /* Red-900 */
+            opacity: 0.8;
+        }
+        .blank-highlight {
+            border-bottom-width: 2px;
+            border-color: #2563eb; /* Blue-600 */
+            color: #1d4ed8; /* Blue-700 */
+            font-weight: 700;
+            padding: 0 2px;
+        }
+    </style>
+</head>
+<body class="pb-24 text-gray-800">
+
+    <header class="sticky top-0 z-50 bg-white shadow-md p-4 transition-all duration-300">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 text-center md:text-left">
+                114學年度 高三上 第三次段考 英文雜誌綜合測驗複習卷詳解
+            </h1>
+            
+            <div class="flex flex-col md:flex-row gap-3 items-center justify-between">
+                <div class="relative w-full md:w-1/3">
+                    <input type="number" id="qInput" placeholder="輸入題號 (1-56)..." 
+                           class="w-full p-2 pl-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition shadow-sm"
+                           min="1" max="56">
+                </div>
+
+                <div class="flex flex-wrap gap-2 w-full md:w-auto justify-center md:justify-end">
+                    <button id="btnSubmit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow transition flex items-center gap-1">
+                        <span>🟦</span> 查詢
+                    </button>
+                    <button id="btnAllAns" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 shadow transition flex items-center gap-1">
+                        <span>🟩</span> 所有答案
+                    </button>
+                    <button id="btnAllDetail" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 shadow transition flex items-center gap-1">
+                        <span>🟪</span> 所有詳解
+                    </button>
+                    <button id="btnClear" class="px-4 py-2 bg-gray-100 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-200 shadow transition flex items-center gap-1">
+                        <span>⬜</span> 清除
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="mainContainer" class="max-w-4xl mx-auto p-4 mt-4 space-y-6 min-h-[60vh]">
+        <div id="welcomeMsg" class="text-center text-gray-500 mt-20">
+            <div class="text-6xl mb-4">📚</div>
+            <p class="text-xl">請輸入題號或點選按鈕開始複習</p>
+            <p class="text-sm mt-2">包含完整翻譯與解析</p>
+        </div>
+    </main>
+
+    <footer class="fixed bottom-0 w-full bg-white border-t border-gray-200 p-3 text-xs md:text-sm text-gray-600 z-40">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span>📄 本頁總瀏覽:</span>
+                <span id="busuanzi_container_page_pv" style="display:none;">
+                    <span id="busuanzi_value_page_pv" class="font-bold text-blue-600">Loading...</span>
+                </span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span>🔍 本次操作:</span>
+                <span id="sessionCount" class="font-bold text-purple-600">0</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Data Handling ---
+        const examData = [
+            // Passage 1: Fast Fashion (1-6)
+            {
+                id: 1, type: "cloze",
+                context: {
+                    prev: "France has taken a bold step to regulate the booming ultra-fast fashion industry through strict new laws.",
+                    target: "This initiative comes as mounting (1) ______ and environmental awareness grow across Europe.",
+                    follow: "Concerns over the ecological damage caused by the industry have (2) ______ the government to implement tougher measures."
+                },
+                trans: {
+                    prev: "法國已邁出大膽的一步，透過嚴格的新法規來規範蓬勃發展的超快時尚產業。",
+                    target: "這項舉措是隨著歐洲各地日益增長的 (1) ______ 和環保意識而來的。",
+                    follow: "對該行業造成的生態破壞的擔憂，已 (2) ______ 政府對不可持續的消費習慣實施更嚴厲的措施。"
+                },
+                options: [
+                    {t: "criticism", zh: "批評", l: "A"}, {t: "architecture", zh: "建築", l: "B"}, {t: "generosity", zh: "慷慨", l: "C"}, {t: "destination", zh: "目的地", l: "D"}
+                ],
+                ans: "A",
+                reason: "文意指隨著「批評」與環保意識的增長，政府採取了行動。criticism (批評) 符合語境。"
+            },
+            {
+                id: 2, type: "cloze",
+                context: {
+                    prev: "This initiative comes as mounting (1) ______ and environmental awareness grow across Europe.",
+                    target: "Concerns over the ecological damage caused by the industry have (2) ______ the government to implement tougher measures.",
+                    follow: "Ultra-fast fashion refers to companies that manufacture massive quantities of cheap, trendy clothing at record speeds."
+                },
+                trans: {
+                    prev: "這項舉措是隨著歐洲各地日益增長的批評和環保意識而來的。",
+                    target: "對該行業造成的生態破壞的擔憂，已 (2) ______ 政府實施更嚴厲的措施。",
+                    follow: "超快時尚指的是那些以創紀錄的速度生產大量廉價、流行服裝的公司。"
+                },
+                options: [
+                    {t: "soaked", zh: "浸泡", l: "A"}, {t: "browsed", zh: "瀏覽", l: "B"}, {t: "prompted", zh: "促使", l: "C"}, {t: "overlooked", zh: "忽略", l: "D"}
+                ],
+                ans: "C",
+                reason: "prompt sb to do sth 為「促使/驅使某人做某事」。擔憂「促使」了政府行動。"
+            },
+            {
+                id: 3, type: "cloze",
+                context: {
+                    prev: "Ultra-fast fashion refers to companies that manufacture massive quantities of cheap, trendy clothing at record speeds.",
+                    target: "This business model floods markets with (3) ______ garments that harm the environment and are often discarded after only a few wears.",
+                    follow: "Under the new regulations, brands like Shein and Temu must disclose the environmental impact of their products."
+                },
+                trans: {
+                    prev: "超快時尚指的是那些以創紀錄的速度生產大量廉價、流行服裝的公司。",
+                    target: "這種商業模式向市場大量傾銷 (3) ______ 的服裝，這些服裝不僅破壞環境，且常在穿過幾次後就被丟棄。",
+                    follow: "根據新規定，像 Shein 和 Temu 這樣的品牌必須揭露其產品對環境的影響。"
+                },
+                options: [
+                    {t: "recreational", zh: "休閒的", l: "A"}, {t: "disposable", zh: "用完即丟的", l: "B"}, {t: "compulsory", zh: "強制的", l: "C"}, {t: "informative", zh: "資訊豐富的", l: "D"}
+                ],
+                ans: "B",
+                reason: "後文提到 often discarded (經常被丟棄)，故選 disposable (用完即丟的/一次性的)。"
+            },
+            {
+                id: 4, type: "cloze",
+                context: {
+                    prev: "Under the new regulations, brands like Shein and Temu must disclose the environmental impact of their products.",
+                    target: "By 2030, these companies could face substantial (4) ______ of up to €10 per item if they fail to comply.",
+                    follow: "Additionally, advertising for such products will be (5) ______ to prevent promoting wasteful consumption."
+                },
+                trans: {
+                    prev: "根據新規定，像 Shein 和 Temu 這樣的品牌必須揭露其產品對環境的影響。",
+                    target: "到了2030年，如果這些公司未能遵守規定，可能面臨每件商品高達10歐元的鉅額 (4) ______。",
+                    follow: "此外，針對此類產品的廣告將被 (5) ______，以防止推廣浪費性的消費。"
+                },
+                options: [
+                    {t: "patents", zh: "專利", l: "A"}, {t: "souvenirs", zh: "紀念品", l: "B"}, {t: "quotas", zh: "配額", l: "C"}, {t: "penalties", zh: "懲罰/罰款", l: "D"}
+                ],
+                ans: "D",
+                reason: "違反規定(fail to comply)會面臨的是 penalty (罰款/懲罰)。"
+            },
+            {
+                id: 5, type: "cloze",
+                context: {
+                    prev: "By 2030, these companies could face substantial (4) ______ of up to €10 per item if they fail to comply.",
+                    target: "Additionally, advertising for such products will be (5) ______ to prevent promoting wasteful consumption.",
+                    follow: "This represents Europe’s most (6) ______ legislative move to date."
+                },
+                trans: {
+                    prev: "到了2030年，如果這些公司未能遵守規定，可能面臨鉅額罰款。",
+                    target: "此外，針對此類產品的廣告將被 (5) ______，以防止推廣浪費性的消費。",
+                    follow: "這代表了歐洲迄今為止最 (6) ______ 的立法舉措。"
+                },
+                options: [
+                    {t: "prohibited", zh: "禁止", l: "A"}, {t: "guaranteed", zh: "保證", l: "B"}, {t: "established", zh: "建立", l: "C"}, {t: "notified", zh: "通知", l: "D"}
+                ],
+                ans: "A",
+                reason: "為了防止浪費性消費，廣告應該是被 prohibited (禁止)。"
+            },
+            {
+                id: 6, type: "cloze",
+                context: {
+                    prev: "Additionally, advertising for such products will be (5) ______ to prevent promoting wasteful consumption.",
+                    target: "This represents Europe’s most (6) ______ legislative move to date, aiming to steer the global fashion industry toward a more sustainable future.",
+                    follow: "(End of passage)"
+                },
+                trans: {
+                    prev: "此外，針對此類產品的廣告將被禁止。",
+                    target: "這代表了歐洲迄今為止最 (6) ______ 的立法舉措，旨在引導全球時尚產業邁向更永續的未來。",
+                    follow: "(段落結束)"
+                },
+                options: [
+                    {t: "mechanical", zh: "機械的", l: "A"}, {t: "systematic", zh: "系統性的", l: "B"}, {t: "delightful", zh: "令人愉快的", l: "C"}, {t: "vocal", zh: "聲音的/直言不諱的", l: "D"}
+                ],
+                ans: "B",
+                reason: "這一系列的法律行動代表了一種 systematic (系統性的/有條理的) 舉措來改變產業。"
+            },
+            // Passage 2: Language & Political Correctness (7-16)
+            {
+                id: 7, type: "cloze",
+                context: {
+                    prev: "In an era where a single spoken error can define your reputation...",
+                    target: "...we must learn how to carefully (7) ______ the complex landscape of modern social interaction.",
+                    follow: "The core of political correctness lies in challenging the established (8) ______..."
+                },
+                trans: {
+                    prev: "在這個一句口誤就能定義你名聲的時代...",
+                    target: "...我們必須學會如何小心地 (7) ______ 現代社交互動的複雜局勢。",
+                    follow: "政治正確的核心在於挑戰既定的 (8) ______..."
+                },
+                options: [
+                    {t: "instruct", zh: "指示", l: "A"}, {t: "advocate", zh: "提倡", l: "B"}, {t: "navigate", zh: "導航/應對", l: "C"}, {t: "resemble", zh: "像", l: "D"}
+                ],
+                ans: "C",
+                reason: "navigate 常用於指在複雜的情境或地形中「導航/應對/摸索前進」。"
+            },
+            {
+                id: 8, type: "cloze",
+                context: {
+                    prev: "...we must learn how to carefully (7) ______ the complex landscape of modern social interaction.",
+                    target: "The core of political correctness lies in challenging the established (8) ______ that language is merely a tool rather than a shaper of reality.",
+                    follow: "For example, replacing gendered titles helps dismantle the belief..."
+                },
+                trans: {
+                    prev: "...我們必須學會如何小心地應對現代社交互動的複雜局勢。",
+                    target: "政治正確的核心在於挑戰那個既定的 (8) ______，即語言僅僅是工具而非現實的塑造者。",
+                    follow: "例如，替換有性別區分的頭銜有助於瓦解那種信念..."
+                },
+                options: [
+                    {t: "notion", zh: "觀念", l: "A"}, {t: "margin", zh: "邊緣/利潤", l: "B"}, {t: "series", zh: "系列", l: "C"}, {t: "scheme", zh: "計畫/陰謀", l: "D"}
+                ],
+                ans: "A",
+                reason: "notion 意為「觀念/概念」。文中指挑戰「語言只是工具」的這個舊觀念。"
+            },
+            {
+                id: 9, type: "cloze",
+                context: {
+                    prev: "The core of political correctness lies in challenging the established (8) ______...",
+                    target: "For example, replacing gendered titles helps dismantle the belief that leadership is a/an (9) ______ male trait restricted to one sex.",
+                    follow: "By carefully selecting our vocabulary, we aim to foster a more (10) ______ environment..."
+                },
+                trans: {
+                    prev: "政治正確的核心在於挑戰既定的觀念...",
+                    target: "例如，替換有性別區分的頭銜有助於瓦解那種認為領導力是 (9) ______ 僅限於某種性別的男性特質的信念。",
+                    follow: "藉由仔細選擇我們的詞彙，我們旨在培養一個更 (10) ______ 的環境..."
+                },
+                options: [
+                    {t: "remarkably", zh: "顯著地", l: "A"}, {t: "inherently", zh: "天生地/固有地", l: "B"}, {t: "thoroughly", zh: "徹底地", l: "C"}, {t: "relevantly", zh: "相關地", l: "D"}
+                ],
+                ans: "B",
+                reason: "inherently 意為「天生地/固有地」。指過去認為領導力「天生」就是男性的特質。"
+            },
+            {
+                id: 10, type: "cloze",
+                context: {
+                    prev: "For example, replacing gendered titles helps dismantle the belief that leadership is a/an (9) ______ male trait...",
+                    target: "By carefully selecting our vocabulary, we aim to foster a more (10) ______ environment where every individual feels valued and respected.",
+                    follow: "Beyond just words, this movement (11) ______ significant influence across various sectors..."
+                },
+                trans: {
+                    prev: "例如，替換有性別區分的頭銜有助於瓦解那種信念...",
+                    target: "藉由仔細選擇我們的詞彙，我們旨在培養一個更 (10) ______ 的環境，讓每個人都感到被重視和尊重。",
+                    follow: "不僅僅是文字，這場運動在各個領域 (11) ______ 了重大影響..."
+                },
+                options: [
+                    {t: "extensive", zh: "廣泛的", l: "A"}, {t: "exclusive", zh: "獨家的/排外的", l: "B"}, {t: "potential", zh: "潛在的", l: "C"}, {t: "inclusive", zh: "包容的", l: "D"}
+                ],
+                ans: "D",
+                reason: "讓每個人都感到被尊重，即為 inclusive (具包容性的) 環境。"
+            },
+            {
+                id: 11, type: "cloze",
+                context: {
+                    prev: "...where every individual feels valued and respected.",
+                    target: "Beyond just words, this movement (11) ______ significant influence across various sectors of society, driving structural changes.",
+                    follow: "In the field of education, the demand for diverse perspectives has (12) ______ schools to update their materials..."
+                },
+                trans: {
+                    prev: "...讓每個人都感到被重視和尊重。",
+                    target: "不僅僅是文字，這場運動在社會各個領域 (11) ______ 了重大影響，推動了結構性的改變。",
+                    follow: "在教育領域，對多元觀點的需求已 (12) ______ 學校更新教材..."
+                },
+                options: [
+                    {t: "mimics", zh: "模仿", l: "A"}, {t: "blends", zh: "混合", l: "B"}, {t: "exerts", zh: "施加", l: "C"}, {t: "sneaks", zh: "潛行", l: "D"}
+                ],
+                ans: "C",
+                reason: "exert influence 為固定搭配，意為「施加影響/發揮影響」。"
+            },
+            {
+                id: 12, type: "cloze",
+                context: {
+                    prev: "Beyond just words, this movement (11) ______ significant influence across various sectors...",
+                    target: "In the field of education, the demand for diverse perspectives has (12) ______ schools to update their materials to reflect a wider history.",
+                    follow: "Consequently, many institutions have implemented a major (13) ______ revision..."
+                },
+                trans: {
+                    prev: "不僅僅是文字，這場運動發揮了重大影響...",
+                    target: "在教育領域，對多元觀點的需求已 (12) ______ 學校更新教材，以反映更廣泛的歷史。",
+                    follow: "因此，許多機構實施了重大的 (13) ______ 修訂..."
+                },
+                options: [
+                    {t: "notified", zh: "通知", l: "A"}, {t: "prompted", zh: "促使", l: "B"}, {t: "executed", zh: "執行", l: "C"}, {t: "assessed", zh: "評估", l: "D"}
+                ],
+                ans: "B",
+                reason: "prompted (促使/激勵)。需求促使了學校採取行動。"
+            },
+            {
+                id: 13, type: "cloze",
+                context: {
+                    prev: "...the demand for diverse perspectives has (12) ______ schools to update their materials...",
+                    target: "Consequently, many institutions have implemented a major (13) ______ revision to address topics like colonialism and gender identity.",
+                    follow: "Similarly, corporations are enforcing stricter rules against (14) ______..."
+                },
+                trans: {
+                    prev: "...對多元觀點的需求已促使學校更新教材...",
+                    target: "因此，許多機構實施了重大的 (13) ______ 修訂，以處理殖民主義和性別認同等議題。",
+                    follow: "同樣地，企業也正在執行更嚴格的規則來反對 (14) ______..."
+                },
+                options: [
+                    {t: "capability", zh: "能力", l: "A"}, {t: "curriculum", zh: "課程", l: "B"}, {t: "laboratory", zh: "實驗室", l: "C"}, {t: "manuscript", zh: "手稿", l: "D"}
+                ],
+                ans: "B",
+                reason: "學校教材的修訂即為 curriculum (課程) revision。"
+            },
+            {
+                id: 14, type: "cloze",
+                context: {
+                    prev: "...many institutions have implemented a major (13) ______ revision...",
+                    target: "Similarly, corporations are enforcing stricter rules against (14) ______ to ensure a safe and dignified atmosphere for all employees.",
+                    follow: "Governments are also adapting by adopting gender-(15) ______ language in official documents..."
+                },
+                trans: {
+                    prev: "...許多機構實施了重大的課程修訂...",
+                    target: "同樣地，企業也正在執行更嚴格的規則來反對 (14) ______，以確保所有員工享有安全和有尊嚴的氛圍。",
+                    follow: "政府也正在適應，通過在官方文件中採用性別 (15) ______ 的語言..."
+                },
+                options: [
+                    {t: "antibiotic", zh: "抗生素", l: "A"}, {t: "enthusiasm", zh: "熱情", l: "B"}, {t: "competence", zh: "能力", l: "C"}, {t: "harassment", zh: "騷擾", l: "D"}
+                ],
+                ans: "D",
+                reason: "為了確保安全和尊嚴，企業禁止的是 harassment (騷擾)。"
+            },
+            {
+                id: 15, type: "cloze",
+                context: {
+                    prev: "...corporations are enforcing stricter rules against (14) ______...",
+                    target: "Governments are also adapting by adopting gender-(15) ______ language in official documents to recognize non-binary identities.",
+                    follow: "Even in entertainment, films like Black Panther have brought minority representation into the (16) ______ spotlight..."
+                },
+                trans: {
+                    prev: "...企業也正在執行更嚴格的規則來反對騷擾...",
+                    target: "政府也正在適應，通過在官方文件中採用性別 (15) ______ 的語言來承認非二元性別身分。",
+                    follow: "即便在娛樂界，像《黑豹》這樣的電影也將少數族群的代表性帶入了 (16) ______ 聚光燈下..."
+                },
+                options: [
+                    {t: "evident", zh: "明顯的", l: "A"}, {t: "unaware", zh: "不知情的", l: "B"}, {t: "neutral", zh: "中立的", l: "C"}, {t: "radical", zh: "激進的", l: "D"}
+                ],
+                ans: "C",
+                reason: "gender-neutral (性別中立) 是指不特定區分性別的語言，符合後文「承認非二元性別」。"
+            },
+            {
+                id: 16, type: "cloze",
+                context: {
+                    prev: "Governments are also adapting by adopting gender-(15) ______ language...",
+                    target: "Even in entertainment, films like Black Panther have brought minority representation into the (16) ______ spotlight, proving that cultural sensitivity can align with commercial success.",
+                    follow: "(End of passage)"
+                },
+                trans: {
+                    prev: "政府也正在適應，採用性別中立的語言...",
+                    target: "即便在娛樂界，像《黑豹》這樣的電影也將少數族群的代表性帶入了 (16) ______ 聚光燈下，證明文化敏感度可以與商業成功並行。",
+                    follow: "(段落結束)"
+                },
+                options: [
+                    {t: "systematic", zh: "系統性的", l: "A"}, {t: "mechanical", zh: "機械的", l: "B"}, {t: "legitimate", zh: "合法的", l: "C"}, {t: "mainstream", zh: "主流的", l: "D"}
+                ],
+                ans: "D",
+                reason: "mainstream spotlight 指的是「主流」媒體或大眾的關注。"
+            },
+             // Passage 3: PC Continued (17-26)
+            {
+                id: 17, type: "cloze",
+                context: {
+                    prev: "Despite its aim to protect vulnerable groups...",
+                    target: "...the movement for political correctness has encountered (17) ______ opposition from various sectors of society.",
+                    follow: "Critics argue that it creates a culture where individuals are afraid to speak freely..."
+                },
+                trans: {
+                    prev: "儘管其目的是保護弱勢群體...",
+                    target: "...政治正確運動遭遇了來自社會各界的 (17) ______ 反對。",
+                    follow: "批評者認為它創造了一種人們害怕自由發言的文化..."
+                },
+                options: [
+                    {t: "recreational", zh: "休閒的", l: "A"}, {t: "substantial", zh: "巨大的/實質的", l: "B"}, {t: "revolutionary", zh: "革命性的", l: "C"}, {t: "inappropriate", zh: "不適當的", l: "D"}
+                ],
+                ans: "B",
+                reason: "substantial opposition 意為「巨大的/實質的」反對。"
+            },
+            {
+                id: 18, type: "cloze",
+                context: {
+                    prev: "Critics argue that it creates a culture where individuals are afraid to speak freely...",
+                    target: "...leading them to self-censor due to fear of facing public (18) ______.",
+                    follow: "Even when a speaker has no malicious (19) ______..."
+                },
+                trans: {
+                    prev: "批評者認為它創造了一種人們害怕自由發言的文化...",
+                    target: "...導致他們因為害怕面對公眾的 (18) ______ 而進行自我審查。",
+                    follow: "即使說話者沒有惡意的 (19) ______..."
+                },
+                options: [
+                    {t: "spectrum", zh: "光譜/範圍", l: "A"}, {t: "district", zh: "區域", l: "B"}, {t: "backlash", zh: "強烈反彈", l: "C"}, {t: "landmark", zh: "地標", l: "D"}
+                ],
+                ans: "C",
+                reason: "backlash 意為「強烈反彈/抵制」。fear of public backlash 是常見用法。"
+            },
+            {
+                id: 19, type: "cloze",
+                context: {
+                    prev: "...leading them to self-censor due to fear of facing public (18) ______.",
+                    target: "Even when a speaker has no malicious (19) ______, a single clumsy phrase can trigger a wave of public outrage on social media.",
+                    follow: "Controversies often arise in the entertainment industry..."
+                },
+                trans: {
+                    prev: "...導致他們因為害怕面對公眾的反彈而進行自我審查。",
+                    target: "即使說話者沒有惡意的 (19) ______，一句笨拙的話也可能在社群媒體上引發一波公眾憤怒。",
+                    follow: "爭議經常出現在娛樂產業..."
+                },
+                options: [
+                    {t: "vessel", zh: "船艦/容器", l: "A"}, {t: "device", zh: "裝置", l: "B"}, {t: "intent", zh: "意圖", l: "C"}, {t: "patent", zh: "專利", l: "D"}
+                ],
+                ans: "C",
+                reason: "no malicious intent 意為「沒有惡意」。"
+            },
+            {
+                id: 20, type: "cloze",
+                context: {
+                    prev: "Controversies often arise in the entertainment industry...",
+                    target: "...such as when classic stories undergo a modern (20) ______ that changes the race or gender of beloved characters.",
+                    follow: "Purists often argue that such casting decisions compromise the historical (21) ______ of the original narrative..."
+                },
+                trans: {
+                    prev: "爭議經常出現在娛樂產業...",
+                    target: "...例如當經典故事經歷現代的 (20) ______，改變了深受喜愛的角色的種族或性別。",
+                    follow: "原著主義者經常爭辯說，這樣的選角決定損害了原始敘事的歷史 (21) ______..."
+                },
+                options: [
+                    {t: "generation", zh: "世代", l: "A"}, {t: "evacuation", zh: "撤離", l: "B"}, {t: "decoration", zh: "裝飾", l: "C"}, {t: "adaptation", zh: "改編", l: "D"}
+                ],
+                ans: "D",
+                reason: "adaptation 在此指作品的「改編」。"
+            },
+            {
+                id: 21, type: "cloze",
+                context: {
+                    prev: "...such as when classic stories undergo a modern (20) ______...",
+                    target: "Purists often argue that such casting decisions compromise the historical (21) ______ of the original narrative for the sake of diversity.",
+                    follow: "In the corporate world, similar debates exist where companies implement strict (22) ______..."
+                },
+                trans: {
+                    prev: "...例如當經典故事經歷現代的改編...",
+                    target: "原著主義者經常爭辯說，這樣的選角決定為了多樣性而損害了原始敘事的歷史 (21) ______。",
+                    follow: "在企業界，也存在類似的辯論，公司實施嚴格的 (22) ______..."
+                },
+                options: [
+                    {t: "entrepreneur", zh: "企業家", l: "A"}, {t: "authenticity", zh: "真實性", l: "B"}, {t: "accompaniment", zh: "伴奏/伴隨物", l: "C"}, {t: "implementation", zh: "實施", l: "D"}
+                ],
+                ans: "B",
+                reason: "historical authenticity 指歷史的「真實性/正統性」。"
+            },
+            {
+                id: 22, type: "cloze",
+                context: {
+                    prev: "In the corporate world, similar debates exist...",
+                    target: "...where companies implement strict (22) ______ to ensure that minority groups are adequately represented in the workforce.",
+                    follow: "However, these policies can breed deep (23) ______ among candidates who feel they were rejected..."
+                },
+                trans: {
+                    prev: "在企業界，也存在類似的辯論...",
+                    target: "...公司實施嚴格的 (22) ______ 以確保少數群體在勞動力中得到充分代表。",
+                    follow: "然而，這些政策可能會在那些覺得被拒絕的候選人中滋生深深的 (23) ______..."
+                },
+                options: [
+                    {t: "genres", zh: "類型", l: "A"}, {t: "routes", zh: "路線", l: "B"}, {t: "drills", zh: "演習/鑽孔", l: "C"}, {t: "quotas", zh: "配額", l: "D"}
+                ],
+                ans: "D",
+                reason: "quotas 指「配額/名額」。此處指為少數族群保留的招聘配額。"
+            },
+            {
+                id: 23, type: "cloze",
+                context: {
+                    prev: "...to ensure that minority groups are adequately represented in the workforce.",
+                    target: "However, these policies can breed deep (23) ______ among candidates who feel they were rejected despite their superior skills.",
+                    follow: "They argue that hiring decisions should depend entirely on professional (24) ______ rather than on demographic factors..."
+                },
+                trans: {
+                    prev: "...以確保少數群體在勞動力中得到充分代表。",
+                    target: "然而，這些政策可能會在那些覺得自己儘管技能優越卻被拒絕的候選人中滋生深深的 (23) ______。",
+                    follow: "他們認為招聘決定應完全取決於專業 (24) ______ 而非人口統計因素..."
+                },
+                options: [
+                    {t: "depression", zh: "憂鬱/蕭條", l: "A"}, {t: "generosity", zh: "慷慨", l: "B"}, {t: "resentment", zh: "憤恨/怨恨", l: "C"}, {t: "separation", zh: "分離", l: "D"}
+                ],
+                ans: "C",
+                reason: "覺得不公平时會產生 resentment (怨恨/不滿)。"
+            },
+            {
+                id: 24, type: "cloze",
+                context: {
+                    prev: "...who feel they were rejected despite their superior skills.",
+                    target: "They argue that hiring decisions should depend entirely on professional (24) ______ rather than on demographic factors like gender or ethnicity.",
+                    follow: "Ultimately, this cultural shift forces society to (25) ______ uncomfortable truths..."
+                },
+                trans: {
+                    prev: "...那些覺得自己儘管技能優越卻被拒絕的候選人。",
+                    target: "他們認為招聘決定應完全取決於專業 (24) ______ 而非性別或種族等人口統計因素。",
+                    follow: "最終，這種文化轉變迫使社會去 (25) ______ 那些令人不舒服的真相..."
+                },
+                options: [
+                    {t: "accessibility", zh: "可及性", l: "A"}, {t: "discrimination", zh: "歧視", l: "B"}, {t: "microgravity", zh: "微重力", l: "C"}, {t: "qualifications", zh: "資格/資歷", l: "D"}
+                ],
+                ans: "D",
+                reason: "professional qualifications 指專業「資格/資歷」。"
+            },
+            {
+                id: 25, type: "cloze",
+                context: {
+                    prev: "They argue that hiring decisions should depend entirely on professional (24) ______...",
+                    target: "Ultimately, this cultural shift forces society to (25) ______ uncomfortable truths about privilege that many would prefer to ignore.",
+                    follow: "For example, some believe that success is based (26) ______ on hard work..."
+                },
+                trans: {
+                    prev: "他們認為招聘決定應完全取決於專業資格...",
+                    target: "最終，這種文化轉變迫使社會去 (25) ______ 那些許多人寧願忽視的關於特權的令人不舒服的真相。",
+                    follow: "例如，有些人相信成功 (26) ______ 建立在努力工作之上..."
+                },
+                options: [
+                    {t: "diminish", zh: "減少", l: "A"}, {t: "confront", zh: "面對/對抗", l: "B"}, {t: "rehearse", zh: "排練", l: "C"}, {t: "interact", zh: "互動", l: "D"}
+                ],
+                ans: "B",
+                reason: "confront truths 為「面對真相」。"
+            },
+            {
+                id: 26, type: "cloze",
+                context: {
+                    prev: "...uncomfortable truths about privilege that many would prefer to ignore.",
+                    target: "For example, some believe that success is based (26) ______ on hard work, ignoring the hidden benefits of a wealthy background.",
+                    follow: "The goal is not to police language, but to foster a more respectful environment."
+                },
+                trans: {
+                    prev: "...那些許多人寧願忽視的關於特權的令人不舒服的真相。",
+                    target: "例如，有些人相信成功 (26) ______ 建立在努力工作之上，而忽視了富裕背景的隱藏好處。",
+                    follow: "目標不是要監管語言，而是要培養一個更尊重的環境。"
+                },
+                options: [
+                    {t: "seemingly", zh: "看似/表面上", l: "A"}, {t: "virtually", zh: "幾乎/虛擬地", l: "B"}, {t: "decently", zh: "體面地", l: "C"}, {t: "liberally", zh: "慷慨地/自由地", l: "D"}
+                ],
+                ans: "A",
+                reason: "seemingly (表面上/看似)。指他們認為「看似」只靠努力，卻忽略了背景因素。"
+            },
+             // Passage 4: Art Heritage (27-36)
+            {
+                id: 27, type: "cloze",
+                context: {
+                    prev: "In June, the global art community was shaken by reports of visitors damaging masterpieces...",
+                    target: "...a trend of careless (27) ______ that has sparked worldwide concern.",
+                    follow: "We must understand that historical artifacts are delicate..."
+                },
+                trans: {
+                    prev: "六月，全球藝術界因遊客破壞傑作的報導而震驚...",
+                    target: "...這種粗心大意的 (27) ______ 趨勢引發了全球關注。",
+                    follow: "我們必須了解歷史文物是脆弱的..."
+                },
+                options: [
+                    {t: "revisions", zh: "修訂", l: "A"}, {t: "incidents", zh: "事件", l: "B"}, {t: "intruders", zh: "入侵者", l: "C"}, {t: "colleagues", zh: "同事", l: "D"}
+                ],
+                ans: "B",
+                reason: "incidents (事件/事故)。指這些破壞文物的事件。"
+            },
+            {
+                id: 28, type: "cloze",
+                context: {
+                    prev: "...a trend of careless (27) ______ that has sparked worldwide concern.",
+                    target: "We must understand that historical artifacts are delicate, and even minor actions can permanently (28) ______ the surface of a painting.",
+                    follow: "For example, the intense burst of light from flash (29) ______ is known to speed up the fading of colors."
+                },
+                trans: {
+                    prev: "...這種粗心大意的事件趨勢引發了全球關注。",
+                    target: "我們必須了解歷史文物是脆弱的，即使是微小的動作也可能永久 (28) ______ 畫作的表面。",
+                    follow: "例如，來自閃光 (29) ______ 的強光已知會加速顏色的褪色。"
+                },
+                options: [
+                    {t: "rejuvenate", zh: "使年輕/恢復活力", l: "A"}, {t: "deteriorate", zh: "惡化/損壞", l: "B"}, {t: "acknowledge", zh: "承認", l: "C"}, {t: "modernize", zh: "現代化", l: "D"}
+                ],
+                ans: "B",
+                reason: "deteriorate 意為「惡化/損壞」。破壞文物即使其表面損壞。"
+            },
+            {
+                id: 29, type: "cloze",
+                context: {
+                    prev: "...even minor actions can permanently (28) ______ the surface of a painting.",
+                    target: "For example, the intense burst of light from flash (29) ______ is known to speed up the fading of colors.",
+                    follow: "This light exposure is particularly harmful to the vibrant (30) ______ used by artists centuries ago."
+                },
+                trans: {
+                    prev: "...即使是微小的動作也可能永久損壞畫作的表面。",
+                    target: "例如，來自閃光 (29) ______ 的強光已知會加速顏色的褪色。",
+                    follow: "這種光線暴露對幾個世紀前藝術家使用的鮮豔 (30) ______ 特別有害。"
+                },
+                options: [
+                    {t: "engineering", zh: "工程", l: "A"}, {t: "architecture", zh: "建築", l: "B"}, {t: "conscription", zh: "徵兵", l: "C"}, {t: "photography", zh: "攝影", l: "D"}
+                ],
+                ans: "D",
+                reason: "flash photography 指「閃光燈攝影」。"
+            },
+            {
+                id: 30, type: "cloze",
+                context: {
+                    prev: "For example, the intense burst of light from flash (29) ______ is known to speed up the fading of colors.",
+                    target: "This light exposure is particularly harmful to the vibrant (30) ______ used by artists centuries ago.",
+                    follow: "To prevent accidental collisions, many institutions now strictly (31) ______ the use of cumbersome equipment like tripods."
+                },
+                trans: {
+                    prev: "例如，來自閃光攝影的強光已知會加速顏色的褪色。",
+                    target: "這種光線暴露對幾個世紀前藝術家使用的鮮豔 (30) ______ 特別有害。",
+                    follow: "為了防止意外碰撞，許多機構現在嚴格 (31) ______ 使用像腳架這樣笨重的設備。"
+                },
+                options: [
+                    {t: "villains", zh: "反派角色", l: "A"}, {t: "garments", zh: "服裝", l: "B"}, {t: "remedies", zh: "療法", l: "C"}, {t: "pigments", zh: "顏料", l: "D"}
+                ],
+                ans: "D",
+                reason: "pigments (顏料)。畫作使用的是顏料。"
+            },
+            {
+                id: 31, type: "cloze",
+                context: {
+                    prev: "...particularly harmful to the vibrant (30) ______ used by artists centuries ago.",
+                    target: "To prevent accidental collisions, many institutions now strictly (31) ______ the use of cumbersome equipment like tripods.",
+                    follow: "Once inside the galleries, visitors are expected to maintain a (32) ______ distance to ensure the safety of the exhibits."
+                },
+                trans: {
+                    prev: "...對幾個世紀前藝術家使用的鮮豔顏料特別有害。",
+                    target: "為了防止意外碰撞，許多機構現在嚴格 (31) ______ 使用像腳架這樣笨重的設備。",
+                    follow: "一旦進入畫廊，遊客被要求保持 (32) ______ 的距離以確保展品的安全。"
+                },
+                options: [
+                    {t: "interact", zh: "互動", l: "A"}, {t: "initiate", zh: "發起", l: "B"}, {t: "prohibit", zh: "禁止", l: "C"}, {t: "instruct", zh: "指示", l: "D"}
+                ],
+                ans: "C",
+                reason: "為了防止碰撞，應該是 prohibit (禁止) 使用腳架。"
+            },
+            {
+                id: 32, type: "cloze",
+                context: {
+                    prev: "To prevent accidental collisions, many institutions now strictly (31) ______ the use of cumbersome equipment like tripods.",
+                    target: "Once inside the galleries, visitors are expected to maintain a (32) ______ distance to ensure the safety of the exhibits.",
+                    follow: "Since noise travels easily in open halls, guests should use (33) ______ guides at a low volume."
+                },
+                trans: {
+                    prev: "為了防止意外碰撞，許多機構現在嚴格禁止使用像腳架這樣笨重的設備。",
+                    target: "一旦進入畫廊，遊客被要求保持 (32) ______ 的距離以確保展品的安全。",
+                    follow: "由於噪音在開放的大廳中容易傳播，客人應低音量使用 (33) ______ 導覽。"
+                },
+                options: [
+                    {t: "systematic", zh: "系統性的", l: "A"}, {t: "respectful", zh: "尊重的", l: "B"}, {t: "delightful", zh: "令人愉快的", l: "C"}, {t: "compulsory", zh: "強制的", l: "D"}
+                ],
+                ans: "B",
+                reason: "respectful distance (尊重的距離/適當的距離)，在此指不靠太近以示尊重和保護。"
+            },
+            {
+                id: 33, type: "cloze",
+                context: {
+                    prev: "...visitors are expected to maintain a (32) ______ distance...",
+                    target: "Since noise travels easily in open halls, guests should use (33) ______ guides at a low volume.",
+                    follow: "Furthermore, eating is forbidden because crumbs can (34) ______ the area and attract pests that eat art."
+                },
+                trans: {
+                    prev: "...遊客被要求保持適當的距離...",
+                    target: "由於噪音在開放的大廳中容易傳播，客人應低音量使用 (33) ______ 導覽。",
+                    follow: "此外，禁止飲食，因為碎屑會 (34) ______ 該區域並吸引吃藝術品的害蟲。"
+                },
+                options: [
+                    {t: "epic", zh: "史詩", l: "A"}, {t: "coded", zh: "編碼的", l: "B"}, {t: "audio", zh: "聲音的", l: "C"}, {t: "vocal", zh: "聲音的/嗓音的", l: "D"}
+                ],
+                ans: "C",
+                reason: "audio guides (語音導覽) 是博物館常見設備。"
+            },
+            {
+                id: 34, type: "cloze",
+                context: {
+                    prev: "Since noise travels easily in open halls, guests should use (33) ______ guides at a low volume.",
+                    target: "Furthermore, eating is forbidden because crumbs can (34) ______ the area and attract pests that eat art.",
+                    follow: "If you witness someone breaking these rules, please (35) ______ a security guard immediately."
+                },
+                trans: {
+                    prev: "由於噪音容易傳播，客人應低音量使用語音導覽。",
+                    target: "此外，禁止飲食，因為碎屑會 (34) ______ 該區域並吸引吃藝術品的害蟲。",
+                    follow: "如果你目擊有人違反這些規則，請立即 (35) ______ 保全人員。"
+                },
+                options: [
+                    {t: "contemplate", zh: "沈思", l: "A"}, {t: "collaborate", zh: "合作", l: "B"}, {t: "manufacture", zh: "製造", l: "C"}, {t: "contaminate", zh: "污染", l: "D"}
+                ],
+                ans: "D",
+                reason: "contaminate (污染)。食物碎屑會污染環境。"
+            },
+            {
+                id: 35, type: "cloze",
+                context: {
+                    prev: "...eating is forbidden because crumbs can (34) ______ the area...",
+                    target: "If you witness someone breaking these rules, please (35) ______ a security guard immediately.",
+                    follow: "By following these simple guidelines, we ensure that these treasures remain intact for the next (36) ______ to enjoy."
+                },
+                trans: {
+                    prev: "...因為碎屑會污染該區域...",
+                    target: "如果你目擊有人違反這些規則，請立即 (35) ______ 保全人員。",
+                    follow: "藉由遵守這些簡單的指導方針，我們確保這些珍寶能保持完好供下一個 (36) ______ 享受。"
+                },
+                options: [
+                    {t: "browse", zh: "瀏覽", l: "A"}, {t: "notify", zh: "通知", l: "B"}, {t: "evolve", zh: "演化", l: "C"}, {t: "mingle", zh: "混合/交際", l: "D"}
+                ],
+                ans: "B",
+                reason: "notify (通知/告知)。發現違規應通知保全。"
+            },
+            {
+                id: 36, type: "cloze",
+                context: {
+                    prev: "If you witness someone breaking these rules, please (35) ______ a security guard immediately.",
+                    target: "By following these simple guidelines, we ensure that these treasures remain intact for the next (36) ______ to enjoy.",
+                    follow: "(End of passage)"
+                },
+                trans: {
+                    prev: "如果你目擊有人違反這些規則，請立即通知保全人員。",
+                    target: "藉由遵守這些簡單的指導方針，我們確保這些珍寶能保持完好供下一個 (36) ______ 享受。",
+                    follow: "(段落結束)"
+                },
+                options: [
+                    {t: "decoration", zh: "裝飾", l: "A"}, {t: "generation", zh: "世代", l: "B"}, {t: "graduation", zh: "畢業", l: "C"}, {t: "depression", zh: "憂鬱/凹陷", l: "D"}
+                ],
+                ans: "B",
+                reason: "next generation (下一代)。保存文物是為了後代。"
+            },
+            // Passage 5: Military (37-46)
+            {
+                id: 37, type: "cloze",
+                context: {
+                    prev: "In response to escalating geopolitical tensions, nations are fundamentally rethinking their military strategies.",
+                    target: "Prompted by aggressive moves from Russia, Denmark has passed a new (37) ______ law to officially include women in the military.",
+                    follow: "Upon turning 18, Danish women will now be entered into a draft (38) ______."
+                },
+                trans: {
+                    prev: "為了應對日益升高的地緣政治緊張局勢，各國正在從根本上重新思考其軍事戰略。",
+                    target: "受到俄羅斯侵略行動的驅使，丹麥通過了一項新的 (37) ______ 法，正式將女性納入軍隊。",
+                    follow: "年滿18歲時，丹麥女性現在將被納入徵兵 (38) ______。"
+                },
+                options: [
+                    {t: "sanitation", zh: "衛生設施", l: "A"}, {t: "plumbing", zh: "水管工程", l: "B"}, {t: "conscription", zh: "徵兵", l: "C"}, {t: "annoyance", zh: "煩惱", l: "D"}
+                ],
+                ans: "C",
+                reason: "conscription law (徵兵法/兵役法)。前後文討論入伍當兵。"
+            },
+            {
+                id: 38, type: "cloze",
+                context: {
+                    prev: "...Denmark has passed a new (37) ______ law to officially include women in the military.",
+                    target: "Upon turning 18, Danish women will now be entered into a draft (38) ______.",
+                    follow: "This decision is driven by fears that the conflict in Ukraine could (39) ______ a wider war across Europe..."
+                },
+                trans: {
+                    prev: "...丹麥通過了一項新的徵兵法，正式將女性納入軍隊。",
+                    target: "年滿18歲時，丹麥女性現在將被納入徵兵 (38) ______。",
+                    follow: "這項決定是出於恐懼，擔心烏克蘭的衝突可能 (39) ______ 歐洲更廣泛的戰爭..."
+                },
+                options: [
+                    {t: "remedy", zh: "療法", l: "A"}, {t: "lottery", zh: "彩券/抽籤", l: "B"}, {t: "mercy", zh: "慈悲", l: "C"}, {t: "oath", zh: "誓言", l: "D"}
+                ],
+                ans: "B",
+                reason: "draft lottery (徵兵抽籤)。常見的徵兵機制。"
+            },
+            {
+                id: 39, type: "cloze",
+                context: {
+                    prev: "Upon turning 18, Danish women will now be entered into a draft (38) ______.",
+                    target: "This decision is driven by fears that the conflict in Ukraine could (39) ______ a wider war across Europe, necessitating urgent action.",
+                    follow: "Denmark follows the path of neighbors like Norway, viewing this expansion as a vital step toward (40) ______ its armed forces."
+                },
+                trans: {
+                    prev: "年滿18歲時，丹麥女性現在將被納入徵兵抽籤。",
+                    target: "這項決定是出於恐懼，擔心烏克蘭的衝突可能 (39) ______ 歐洲更廣泛的戰爭，因此需要採取緊急行動。",
+                    follow: "丹麥追隨鄰國挪威的道路，將此擴張視為 (40) ______ 其武裝部隊的重要一步。"
+                },
+                options: [
+                    {t: "trigger", zh: "觸發", l: "A"}, {t: "dictate", zh: "命令/聽寫", l: "B"}, {t: "flatter", zh: "奉承", l: "C"}, {t: "pledge", zh: "發誓", l: "D"}
+                ],
+                ans: "A",
+                reason: "trigger (引發/觸發)。擔心衝突會引發大戰。"
+            },
+            {
+                id: 40, type: "cloze",
+                context: {
+                    prev: "...fears that the conflict in Ukraine could (39) ______ a wider war across Europe...",
+                    target: "Denmark follows the path of neighbors like Norway, viewing this expansion as a vital step toward (40) ______ its armed forces.",
+                    follow: "In Israel, mandatory service for both sexes is widely (41) ______ as essential for national survival."
+                },
+                trans: {
+                    prev: "...擔心烏克蘭的衝突可能引發歐洲更廣泛的戰爭...",
+                    target: "丹麥追隨鄰國挪威的道路，將此擴張視為 (40) ______ 其武裝部隊的重要一步。",
+                    follow: "在以色列，男女皆須服義務役被廣泛 (41) ______ 為國家生存所必需。"
+                },
+                options: [
+                    {t: "modernizing", zh: "現代化", l: "A"}, {t: "shattering", zh: "粉碎", l: "B"}, {t: "strangling", zh: "勒死", l: "C"}, {t: "mingling", zh: "混合", l: "D"}
+                ],
+                ans: "A",
+                reason: "modernizing (現代化)。擴充兵源通常與軍隊現代化或強化有關。"
+            },
+            {
+                id: 41, type: "cloze",
+                context: {
+                    prev: "...viewing this expansion as a vital step toward (40) ______ its armed forces.",
+                    target: "In Israel, mandatory service for both sexes is widely (41) ______ as essential for national survival.",
+                    follow: "This policy is largely shaped by the country's need to defend itself against constant (42) ______ threats..."
+                },
+                trans: {
+                    prev: "...將此擴張視為現代化其武裝部隊的重要一步。",
+                    target: "在以色列，男女皆須服義務役被廣泛 (41) ______ 為國家生存所必需。",
+                    follow: "這項政策很大程度上是由於該國需要防禦來自周邊地區持續的 (42) ______ 威脅..."
+                },
+                options: [
+                    {t: "initiated", zh: "發起", l: "A"}, {t: "acknowledged", zh: "承認/公認", l: "B"}, {t: "contradicted", zh: "反駁/矛盾", l: "C"}, {t: "outnumbered", zh: "數量超過", l: "D"}
+                ],
+                ans: "B",
+                reason: "be acknowledged as (被公認為/被承認為)。"
+            },
+            {
+                id: 42, type: "cloze",
+                context: {
+                    prev: "In Israel, mandatory service for both sexes is widely (41) ______ as essential for national survival.",
+                    target: "This policy is largely shaped by the country's need to defend itself against constant (42) ______ threats from surrounding regions.",
+                    follow: "Denmark’s initiative is not without (43) ______..."
+                },
+                trans: {
+                    prev: "在以色列，男女皆須服義務役被廣泛認為是國家生存所必需。",
+                    target: "這項政策很大程度上是由於該國需要防禦來自周邊地區持續的 (42) ______ 威脅。",
+                    follow: "丹麥的倡議並非沒有 (43) ______..."
+                },
+                options: [
+                    {t: "external", zh: "外部的", l: "A"}, {t: "sunken", zh: "下陷的/沈沒的", l: "B"}, {t: "barren", zh: "貧瘠的", l: "C"}, {t: "sturdy", zh: "堅固的", l: "D"}
+                ],
+                ans: "A",
+                reason: "external threats (外部威脅)。來自周邊地區的威脅屬於外部。"
+            },
+            {
+                id: 43, type: "cloze",
+                context: {
+                    prev: "...need to defend itself against constant (42) ______ threats from surrounding regions.",
+                    target: "Denmark’s initiative is not without (43) ______, as other nations have previously integrated women to boost social equality.",
+                    follow: "For Taiwan, adopting such a system faces practical challenges..."
+                },
+                trans: {
+                    prev: "...需要防禦來自周邊地區持續的外部威脅。",
+                    target: "丹麥的倡議並非沒有 (43) ______，因為其他國家先前已經整合女性以促進社會平等。",
+                    follow: "對台灣而言，採用這樣的系統面臨實際挑戰..."
+                },
+                options: [
+                    {t: "privilege", zh: "特權", l: "A"}, {t: "dilemma", zh: "兩難", l: "B"}, {t: "prospect", zh: "前景", l: "C"}, {t: "precedent", zh: "先例", l: "D"}
+                ],
+                ans: "D",
+                reason: "not without precedent (並非沒有先例)。後句提到其他國家早就做過了。"
+            },
+            {
+                id: 44, type: "cloze",
+                context: {
+                    prev: "Denmark’s initiative is not without (43) ______...",
+                    target: "For Taiwan, adopting such a system faces practical challenges, including (44) ______ infrastructure that cannot accommodate a larger force.",
+                    follow: "There are also valid concerns regarding (45) ______ barracks and the need for separate facilities."
+                },
+                trans: {
+                    prev: "丹麥的倡議並非沒有先例...",
+                    target: "對台灣而言，採用這樣的系統面臨實際挑戰，包括 (44) ______ 的基礎設施無法容納更龐大的部隊。",
+                    follow: "對於 (45) ______ 的營房以及需要分開的設施，也存在合理的擔憂。"
+                },
+                options: [
+                    {t: "trendy", zh: "時髦的", l: "A"}, {t: "soapy", zh: "充滿肥皂的", l: "B"}, {t: "outdated", zh: "過時的", l: "C"}, {t: "conical", zh: "圓錐形的", l: "D"}
+                ],
+                ans: "C",
+                reason: "outdated (過時的/老舊的)。老舊設施無法容納更多人。"
+            },
+            {
+                id: 45, type: "cloze",
+                context: {
+                    prev: "...including (44) ______ infrastructure that cannot accommodate a larger force.",
+                    target: "There are also valid concerns regarding (45) ______ barracks and the need for separate facilities.",
+                    follow: "Finally, advocates argue that female participation is (46) ______ for maintaining a robust defense in an aging society."
+                },
+                trans: {
+                    prev: "...包括過時的基礎設施無法容納更龐大的部隊。",
+                    target: "對於 (45) ______ 的營房以及需要分開的設施，也存在合理的擔憂。",
+                    follow: "最後，支持者認為，在老齡化社會中，女性的參與對於維持強大的國防是 (46) ______ 的。"
+                },
+                options: [
+                    {t: "affirmative", zh: "肯定的", l: "A"}, {t: "untidy", zh: "不整潔的", l: "B"}, {t: "insufficient", zh: "不足的", l: "C"}, {t: "unsustainable", zh: "不可持續的", l: "D"}
+                ],
+                ans: "C",
+                reason: "insufficient (不足的)。指營房空間不足。"
+            },
+            {
+                id: 46, type: "cloze",
+                context: {
+                    prev: "There are also valid concerns regarding (45) ______ barracks...",
+                    target: "Finally, advocates argue that female participation is (46) ______ for maintaining a robust defense in an aging society.",
+                    follow: "(End of passage)"
+                },
+                trans: {
+                    prev: "對於不足的營房也存在合理的擔憂...",
+                    target: "最後，支持者認為，在老齡化社會中，女性的參與對於維持強大的國防是 (46) ______ 的。",
+                    follow: "(段落結束)"
+                },
+                options: [
+                    {t: "permissible", zh: "可允許的", l: "A"}, {t: "indispensable", zh: "不可或缺的", l: "B"}, {t: "unpredictable", zh: "不可預測的", l: "C"}, {t: "comprehensible", zh: "可理解的", l: "D"}
+                ],
+                ans: "B",
+                reason: "indispensable (不可或缺的)。在少子化/老齡化社會，女性兵源變得不可或缺。"
+            },
+            // Passage 6: Dishwasher (47-56)
+            {
+                id: 47, type: "cloze",
+                context: {
+                    prev: "Innovation often springs from the most mundane of daily annoyances.",
+                    target: "For many hosts, facing a mountain of greasy dishes after a dinner party is a domestic (47) ______.",
+                    follow: "In the 1850s, inventors tried to fix this by building crude (48) ______ contraptions made of heavy wood."
+                },
+                trans: {
+                    prev: "創新往往源自於日常生活中最平凡的煩惱。",
+                    target: "對於許多主人來說，晚宴後面對堆積如山的油膩盤子是一件家庭 (47) ______。",
+                    follow: "在1850年代，發明家試圖透過建造由厚重木材製成的粗糙 (48) ______ 裝置來解決這個問題。"
+                },
+                options: [
+                    {t: "landscape", zh: "風景", l: "A"}, {t: "phenomenon", zh: "現象", l: "B"}, {t: "annoyance", zh: "煩惱", l: "C"}, {t: "reservation", zh: "保留/預約", l: "D"}
+                ],
+                ans: "C",
+                reason: "annoyance (煩惱/惱人的事)。呼應首句的 daily annoyances。"
+            },
+            {
+                id: 48, type: "cloze",
+                context: {
+                    prev: "...facing a mountain of greasy dishes after a dinner party is a domestic (47) ______.",
+                    target: "In the 1850s, inventors tried to fix this by building crude (48) ______ contraptions made of heavy wood.",
+                    follow: "Unfortunately, these primitive prototypes, operated by hand (49) ______, were unreliable and often chipped the china."
+                },
+                trans: {
+                    prev: "...晚宴後面對堆積如山的油膩盤子是一件家庭煩惱。",
+                    target: "在1850年代，發明家試圖透過建造由厚重木材製成的粗糙 (48) ______ 裝置來解決這個問題。",
+                    follow: "不幸的是，這些原始的原型機，由手動 (49) ______ 操作，并不可靠，且經常打破瓷器。"
+                },
+                options: [
+                    {t: "recreational", zh: "休閒的", l: "A"}, {t: "constructive", zh: "建設性的", l: "B"}, {t: "influential", zh: "有影響力的", l: "C"}, {t: "mechanical", zh: "機械的", l: "D"}
+                ],
+                ans: "D",
+                reason: "mechanical contraptions (機械裝置)。"
+            },
+            {
+                id: 49, type: "cloze",
+                context: {
+                    prev: "In the 1850s, inventors tried to fix this by building crude (48) ______ contraptions...",
+                    target: "Unfortunately, these primitive prototypes, operated by hand (49) ______, were unreliable and often chipped the china.",
+                    follow: "Josephine Cochrane solved this by designing racks that allowed hot, soapy water to clean items (50) ______."
+                },
+                trans: {
+                    prev: "在1850年代，發明家試圖透過建造由厚重木材製成的粗糙機械裝置來解決這個問題。",
+                    target: "不幸的是，這些原始的原型機，由手動 (49) ______ 操作，并不可靠，且經常打破瓷器。",
+                    follow: "Josephine Cochrane 解決了這個問題，她設計了架子，讓熱肥皂水能 (50) ______ 清洗物品。"
+                },
+                options: [
+                    {t: "vendors", zh: "小販/供應商", l: "A"}, {t: "cranks", zh: "曲柄/怪人", l: "B"}, {t: "districts", zh: "區域", l: "C"}, {t: "landmarks", zh: "地標", l: "D"}
+                ],
+                ans: "B",
+                reason: "hand cranks (手搖曲柄)。早期的機械常需手搖。"
+            },
+            {
+                id: 50, type: "cloze",
+                context: {
+                    prev: "...these primitive prototypes... were unreliable and often chipped the china.",
+                    target: "Josephine Cochrane solved this by designing racks that allowed hot, soapy water to clean items (50) ______.",
+                    follow: "Realizing the commercial value of her invention, she (51) ______ the design in 1886 to prevent copying."
+                },
+                trans: {
+                    prev: "...這些原始的原型機不可靠，且經常打破瓷器。",
+                    target: "Josephine Cochrane 解決了這個問題，她設計了架子，讓熱肥皂水能 (50) ______ 清洗物品。",
+                    follow: "意識到她發明的商業價值，她在1886年為該設計 (51) ______，以防止被抄襲。"
+                },
+                options: [
+                    {t: "virtually", zh: "幾乎", l: "A"}, {t: "thoroughly", zh: "徹底地", l: "B"}, {t: "remarkably", zh: "顯著地", l: "C"}, {t: "tremendously", zh: "極大地", l: "D"}
+                ],
+                ans: "B",
+                reason: "thoroughly (徹底地/完全地)。洗碗機的目的是徹底清洗。"
+            },
+            {
+                id: 51, type: "cloze",
+                context: {
+                    prev: "Josephine Cochrane solved this by designing racks that allowed hot, soapy water to clean items (50) ______.",
+                    target: "Realizing the commercial value of her invention, she (51) ______ the design in 1886 to prevent copying.",
+                    follow: "She subsequently started her own business to (52) ______ the machines for a growing market."
+                },
+                trans: {
+                    prev: "Josephine Cochrane 解決了這個問題，設計了讓熱肥皂水能徹底清洗物品的架子。",
+                    target: "意識到她發明的商業價值，她在1886年為該設計 (51) ______，以防止被抄襲。",
+                    follow: "隨後她創辦了自己的企業，為不斷增長的市場 (52) ______ 這些機器。"
+                },
+                options: [
+                    {t: "evolved", zh: "演化", l: "A"}, {t: "blended", zh: "混合", l: "B"}, {t: "mimicked", zh: "模仿", l: "C"}, {t: "patented", zh: "取得專利", l: "D"}
+                ],
+                ans: "D",
+                reason: "patented (申請專利)。為了 prevent copying (防止抄襲)。"
+            },
+            {
+                id: 52, type: "cloze",
+                context: {
+                    prev: "Realizing the commercial value of her invention, she (51) ______ the design in 1886...",
+                    target: "She subsequently started her own business to (52) ______ the machines for a growing market.",
+                    follow: "The dishwasher was a/an (53) ______ idea that gained traction after appearing at the World’s Columbian Exposition."
+                },
+                trans: {
+                    prev: "意識到她發明的商業價值，她在1886年為該設計申請了專利...",
+                    target: "隨後她創辦了自己的企業，為不斷增長的市場 (52) ______ 這些機器。",
+                    follow: "洗碗機是一個 (53) ______ 的想法，在芝加哥世界博覽會亮相後獲得了關注。"
+                },
+                options: [
+                    {t: "collaborate", zh: "合作", l: "A"}, {t: "rejuvenate", zh: "恢復活力", l: "B"}, {t: "construct", zh: "建造/製造", l: "C"}, {t: "contemplate", zh: "沈思", l: "D"}
+                ],
+                ans: "C",
+                reason: "construct (建造/製造)。在此指製造機器來販售。"
+            },
+            {
+                id: 53, type: "cloze",
+                context: {
+                    prev: "She subsequently started her own business to (52) ______ the machines...",
+                    target: "The dishwasher was a/an (53) ______ idea that gained traction after appearing at the World’s Columbian Exposition.",
+                    follow: "Despite this success, widespread adoption was delayed by the public's (54) ______ with the large size of early models."
+                },
+                trans: {
+                    prev: "隨後她創辦了自己的企業，為不斷增長的市場製造這些機器。",
+                    target: "洗碗機是一個 (53) ______ 的想法，在芝加哥世界博覽會亮相後獲得了關注。",
+                    follow: "儘管取得了成功，但由於大眾對早期型號龐大體積的 (54) ______，其廣泛採用被推遲了。"
+                },
+                options: [
+                    {t: "unpredictable", zh: "不可預測的", l: "A"}, {t: "revolutionary", zh: "革命性的", l: "B"}, {t: "comprehensive", zh: "全面的", l: "C"}, {t: "administrative", zh: "行政的", l: "D"}
+                ],
+                ans: "B",
+                reason: "revolutionary (革命性的)。洗碗機改變了家庭生活。"
+            },
+            {
+                id: 54, type: "cloze",
+                context: {
+                    prev: "The dishwasher was a/an (53) ______ idea that gained traction...",
+                    target: "Despite this success, widespread adoption was delayed by the public's (54) ______ with the large size of early models.",
+                    follow: "It was not until household (55) ______ improved in the 1950s that the appliance became common."
+                },
+                trans: {
+                    prev: "洗碗機是一個革命性的想法...",
+                    target: "儘管取得了成功，但由於大眾對早期型號龐大體積的 (54) ______，其廣泛採用被推遲了。",
+                    follow: "直到1950年代家庭 (55) ______ 改善，這種電器才變得普遍。"
+                },
+                options: [
+                    {t: "frustration", zh: "挫折/不滿", l: "A"}, {t: "flexibility", zh: "彈性", l: "B"}, {t: "generosity", zh: "慷慨", l: "C"}, {t: "intensity", zh: "強度", l: "D"}
+                ],
+                ans: "A",
+                reason: "frustration (挫折/不滿)。機器太大造成使用者的不便與不滿。"
+            },
+            {
+                id: 55, type: "cloze",
+                context: {
+                    prev: "...widespread adoption was delayed by the public's (54) ______ with the large size of early models.",
+                    target: "It was not until household (55) ______ improved in the 1950s that the appliance became common.",
+                    follow: "Her legacy demonstrates that anyone can (56) ______ in engineering if they are driven to solve a problem."
+                },
+                trans: {
+                    prev: "...由於大眾對早期型號龐大體積的不滿，其廣泛採用被推遲了。",
+                    target: "直到1950年代家庭 (55) ______ 改善，這種電器才變得普遍。",
+                    follow: "她的遺產證明，如果有人致力於解決問題，任何人都能在工程領域 (56) ______。"
+                },
+                options: [
+                    {t: "etiquette", zh: "禮儀", l: "A"}, {t: "pigment", zh: "顏料", l: "B"}, {t: "textile", zh: "紡織品", l: "C"}, {t: "plumbing", zh: "水管設施", l: "D"}
+                ],
+                ans: "D",
+                reason: "plumbing (管線/水管設施)。洗碗機需要良好的家庭供水排水系統。"
+            },
+            {
+                id: 56, type: "cloze",
+                context: {
+                    prev: "It was not until household (55) ______ improved in the 1950s...",
+                    target: "Her legacy demonstrates that anyone can (56) ______ in engineering if they are driven to solve a problem.",
+                    follow: "(End of passage)"
+                },
+                trans: {
+                    prev: "直到1950年代家庭管線設施改善，這種電器才變得普遍。",
+                    target: "她的遺產證明，如果有人致力於解決問題，任何人都能在工程領域 (56) ______。",
+                    follow: "(段落結束)"
+                },
+                options: [
+                    {t: "excel", zh: "表現傑出", l: "A"}, {t: "soak", zh: "浸泡", l: "B"}, {t: "ruin", zh: "毀壞", l: "C"}, {t: "sneak", zh: "潛行", l: "D"}
+                ],
+                ans: "A",
+                reason: "excel (表現傑出/擅長)。"
+            }
+        ];
+
+        // --- Session Counter ---
+        let sessionInteractions = 0;
+        const sessionCountEl = document.getElementById('sessionCount');
+        
+        function incrementSession() {
+            sessionInteractions++;
+            sessionCountEl.innerText = sessionInteractions;
+        }
+
+        // --- DOM Elements ---
+        const mainContainer = document.getElementById('mainContainer');
+        const qInput = document.getElementById('qInput');
+        
+        // --- Render Functions ---
+
+        // Helper: Highlight blank in sentence
+        function formatSentence(text, qId, type) {
+            // Replace (N) ______ or similar patterns with highlighted span
+            const regex = new RegExp(`\\(${qId}\\)\\s*_+`, 'g');
+            const replacement = `<span class="blank-highlight">(${qId}) ____</span>`;
+            return text.replace(regex, replacement);
+        }
+
+        // Render Single Question Detail Card
+        function renderDetailCard(q) {
+            const card = document.createElement('div');
+            card.className = "bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-500 animate-fade-in";
+            
+            // Build Options HTML with Chinese Translation
+            let optionsHtml = '<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">';
+            q.options.forEach(opt => {
+                const isCorrect = opt.l === q.ans;
+                const statusClass = isCorrect ? "correct-opt font-bold" : "wrong-opt";
+                const icon = isCorrect ? "✅" : "❌";
+                optionsHtml += `
+                    <div class="p-3 rounded-lg border flex items-center justify-between gap-3 ${statusClass}">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 flex items-center justify-center rounded-full bg-white bg-opacity-60 text-sm font-bold shadow-sm">${opt.l}</span>
+                            <div class="flex flex-col">
+                                <span class="text-base">${opt.t}</span>
+                                <span class="text-xs opacity-80">${opt.zh}</span>
+                            </div>
+                        </div>
+                        <span>${icon}</span>
+                    </div>
+                `;
+            });
+            optionsHtml += '</div>';
+
+            // Context HTML - Updated for consistent font size (text-base)
+            const contextHtml = `
+                <div class="space-y-4 mb-4 text-gray-800">
+                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-100">
+                        <p class="text-xs text-gray-400 uppercase tracking-wide mb-2 font-bold">Context</p>
+                        <p class="text-base leading-relaxed mb-1 opacity-90">${q.context.prev}</p>
+                        <p class="text-base leading-relaxed font-semibold text-gray-900 border-l-4 border-yellow-400 pl-3 py-1 bg-yellow-50 my-2">
+                            ${formatSentence(q.context.target, q.id)}
+                        </p>
+                        <p class="text-base leading-relaxed mt-1 opacity-90">${q.context.follow}</p>
+                    </div>
+                    
+                    <div class="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                        <p class="text-xs text-blue-400 uppercase tracking-wide mb-2 font-bold">Translation</p>
+                        <p class="text-gray-700 text-base leading-relaxed mb-1">${q.trans.prev}</p>
+                        <p class="text-blue-900 font-medium text-base leading-relaxed my-2">${q.trans.target}</p>
+                        <p class="text-gray-700 text-base leading-relaxed">${q.trans.follow}</p>
+                    </div>
+                </div>
+            `;
+
+            card.innerHTML = `
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-gray-800">Question ${q.id}</h3>
+                    <span class="bg-gray-200 text-gray-600 px-2 py-1 rounded text-xs">Cloze Test</span>
+                </div>
+                ${contextHtml}
+                ${optionsHtml}
+                <div class="mt-4 pt-4 border-t border-gray-100">
+                    <p class="text-sm font-bold text-gray-500 mb-1">💡 解析理由 (Rationale):</p>
+                    <p class="text-gray-700 leading-relaxed">${q.reason}</p>
+                </div>
+            `;
+            return card;
+        }
+
+        // Render Quick Answer Grid
+        function renderAllAnswers() {
+            mainContainer.innerHTML = '';
+            const grid = document.createElement('div');
+            grid.className = "grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4";
+            
+            examData.forEach(q => {
+                const item = document.createElement('div');
+                item.className = "bg-white p-4 rounded-lg shadow text-center border hover:shadow-md transition";
+                item.innerHTML = `
+                    <div class="text-xs text-gray-400 mb-1">Q${q.id}</div>
+                    <div class="text-2xl font-bold text-green-600">${q.ans}</div>
+                `;
+                grid.appendChild(item);
+            });
+            mainContainer.appendChild(grid);
+            incrementSession();
+        }
+
+        // Render All Details List
+        function renderAllDetails() {
+            mainContainer.innerHTML = '';
+            examData.forEach(q => {
+                mainContainer.appendChild(renderDetailCard(q));
+            });
+            incrementSession();
+        }
+
+        // Render Single Search Result
+        function searchQuestion() {
+            const val = parseInt(qInput.value);
+            if (!val || val < 1 || val > 56) {
+                alert("請輸入有效的題號 (1-56)");
+                return;
+            }
+            const q = examData.find(d => d.id === val);
+            if (q) {
+                mainContainer.innerHTML = '';
+                mainContainer.appendChild(renderDetailCard(q));
+                incrementSession();
+            }
+        }
+
+        // Clear Screen
+        function clearScreen() {
+            mainContainer.innerHTML = `
+                <div id="welcomeMsg" class="text-center text-gray-500 mt-20 animate-pulse">
+                    <div class="text-6xl mb-4">✨</div>
+                    <p class="text-xl">畫面已清除</p>
+                    <p class="text-sm mt-2">請繼續查詢</p>
+                </div>
+            `;
+            qInput.value = '';
+            incrementSession();
+        }
+
+        // --- Event Listeners ---
+        document.getElementById('btnSubmit').addEventListener('click', searchQuestion);
+        document.getElementById('btnAllAns').addEventListener('click', renderAllAnswers);
+        document.getElementById('btnAllDetail').addEventListener('click', renderAllDetails);
+        document.getElementById('btnClear').addEventListener('click', clearScreen);
+        
+        qInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') searchQuestion();
+        });
+
+    </script>
+</body>
+</html>
